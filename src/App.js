@@ -11,14 +11,17 @@ function App() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=7a258e3fc5e143422021f76bdcfac93c`
 
   const getLocation = (event) => {
-    if (event.key === "Enter"){
+    if(event.key === 'Enter'){
+  
     fetch(url)
     .then(response => response.json())
     .then( data => setData(data))
-    console.log(setData)
-    
+    console.log(data.name)
+    }
   }
-}
+  
+
+
 
 
 
@@ -31,27 +34,29 @@ function App() {
         onChange={event => setLocation(event.target.value)}
         placeholder="Enter Location"
         type="text"
-        onKeyPress={getLocation}
+        onKeyDown={getLocation}
         />
+        <button type="submit" onSubmit={getLocation}> Search</button>
       </div>
 
      <div className="location">
-      <p>Amsterdam</p>
+      <p>{data.name}
+      </p>
      </div>
      <div className="temp">
-      <h1>60 degrees</h1>
+      <h1>{data.main.temp}</h1>
      </div>
      <div className="description">
-      <p>Clouds</p>
+      <p>{data.weather[0].main}</p>
      </div>
      <div className="feels-like">
-      <p>65</p>
+      <p>{data.main.feels_like}</p>
      </div>
      <div className="humidity">
-      <p>20%</p>
+      <p>{data.main.humidity}%</p>
       </div>
       <div className="wind">
-        <p>15 MPH</p>
+        <p>{data.wind.speed}</p>
       </div>
 
 
