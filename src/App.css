@@ -8,3 +8,19 @@
   font-size: 6rem;
 }
 
+.app{
+  
+  background-image: url("./image/weatherappimg.jpeg");
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  
+}
+
+.search {
+  display: flex;
+  
+
+  
+}
