@@ -17,7 +17,9 @@ function App() {
     .then(response => response.json())
     .then( data => setData(data))
     console.log(data.name)
+    setLocation('')
     }
+
   }
   
 
@@ -36,7 +38,6 @@ function App() {
         type="text"
         onKeyDown={getLocation}
         />
-        <button type="submit" onSubmit={getLocation}> Search</button>
       </div>
 
      <div className="location">
@@ -44,23 +45,27 @@ function App() {
       </p>
      </div>
      <div className="temp">
-      <h1>{data.main.temp}</h1>
+      {data.main ? <h1>{ (data.main.temp - 273.15).toFixed(1) }</h1> : null}
      </div>
      <div className="description">
-      <p>{data.weather[0].main}</p>
+      {data.weather ? <p>{data.weather[0].main}</p> : null }
      </div>
-     <div className="feels-like">
-      <p>{data.main.feels_like}</p>
+
+  
+       <div className="feels-like">
+      { data.main ? <p>{(data.main.feels_like - 273.15).toFixed(1)}</p> : null }
      </div>
      <div className="humidity">
-      <p>{data.main.humidity}%</p>
+      { data.main ? <p>{data.main.humidity}%</p> : null }
       </div>
       <div className="wind">
-        <p>{data.wind.speed}</p>
+       { data.wind ?  <p>{data.wind.speed} MPH </p> : null }
       </div>
 
-
+     
      </div>
+
+   
   );
 }
 
