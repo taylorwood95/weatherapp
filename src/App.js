@@ -31,8 +31,9 @@ function App() {
 
   return (
     <div className="app">
+      <div className="container">
       <div className="search">
-        <input 
+        <input className="input"
         value={location}
         onChange={event => setLocation(event.target.value)}
         placeholder="Enter Location"
@@ -41,12 +42,17 @@ function App() {
         />
       </div>
 
+      <div className="top">
+
      <div className="location">
       <p>{data.name}
       </p>
      </div>
      <div className="temp">
-      {data.main ? <h1>{ (data.main.temp - 273.15).toFixed(1) }</h1> : null}
+      {data.main ? <h1>{ (data.main.temp - 273.15).toFixed(1) }°C</h1> : null}
+     </div>
+
+     
      </div>
      <div className="description">
       {data.weather ? <p>{data.weather[0].main}</p> : null }
@@ -61,6 +67,7 @@ function App() {
       </div>
       <div className="wind">
        { data.wind ?  <p>{data.wind.speed} MPH </p> : null }
+      </div>
       </div>
 
      
