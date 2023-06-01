@@ -49,7 +49,7 @@ function App() {
       </p>
      </div>
      <div className="temp">
-      {data.main ? <h1>{ (data.main.temp - 273.15).toFixed(1) }°C</h1> : null}
+      {data.main ? <h1>{ (data.main.temp - 273.15).toFixed() }°C</h1> : null}
      </div>
 
      
@@ -60,7 +60,7 @@ function App() {
 
   
        <div className="feels-like">
-      { data.main ? <p>{(data.main.feels_like - 273.15).toFixed(1)}</p> : null }
+      { data.main ? <p>{(data.main.feels_like - 273.15).toFixed()}</p> : null }
      </div>
      <div className="humidity">
       { data.main ? <p>{data.main.humidity}%</p> : null }
