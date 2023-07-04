@@ -1,11 +1,23 @@
-import { useState } from "react";
-import './App.css'
+import { useState, useEffect } from "react";
+import './App.css';
 
 
 function App() {
 
   const [data, setData] =  useState({})
   const [location, setLocation] = useState('')
+  const [lat, setLat] = useState('')
+  const [long, setLong] = useState('')
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    });
+
+    console.log(`Latitude is: ${lat}`)
+    console.log(`Longitude is: ${long}`)
+  }, [lat, long]);
 
 
 
@@ -13,11 +25,10 @@ function App() {
 
   const getLocation = (event) => {
     if(event.key === 'Enter'){
-  
+   
     fetch(url)
     .then(response => response.json())
     .then( data => setData(data))
-    console.log(data.name)
     setLocation('')
     }
 
@@ -30,7 +41,7 @@ function App() {
 
 
   return (
-    <div className="app">
+      <div className="app">
       <div className="container">
       <div className="search">
         <input className="input"
@@ -48,8 +59,8 @@ function App() {
       <p>{data.name}
       </p>
      </div>
-     <div className="temp">
-      {data.main ? <h1>{ (data.main.temp - 273.15).toFixed() }°C</h1> : null}
+     <div className="temp"> 
+      {data.main ? <h1>{ (data.main.temp - 273.15).toFixed(0) }°C</h1> : null}
      </div>
 
      
